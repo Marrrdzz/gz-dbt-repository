@@ -1,14 +1,55 @@
 version: 2
 
 sources:
-- name: raw 
-  schema: gz_raw_data 
-  description: Le dataset
-  tables : 
-  - name: product
-    identifier: raw_gz_product
-  - name: sales
-    identifier: raw_gz_sales
-  - name: ship
-    identifier: raw_gz_ship
+  - name: raw 
+    schema: gz_raw_data 
+    description: Le dataset
+    tables : 
+    - name: product
+      identifier: raw_gz_product
+      description: purchase price by products
+      columns:
+        - name: products_id
+          description: primary key
+          tests:
+            - unique
+            - not_null
+            
+    - name: sales
+      identifier: raw_gz_sales
+      description: sales by dates with each products and quantity by orders
+      tests: 
+        - unique:
+            column_name: "(orders_id || '-' || pdt_id)"
+      loaded_at_field: CAST(date_date AS DATE)
+      freshness:
+        warn_after: 
+          count: 90
+          period: day
+        error_after:
+          count: 365
+          period: day
+      columns:
+        - name: date_date
+          description: date of purchase
+        - name: orders_id
+          description: primary key 1
+        - name: products_id
+          description: primary key 2
+        - name: revenue
+          description: turnover by order
+        - name: quantity
+          description: number of products by orders
+        - name: products_id
+          description: primary key 2
+
+    - name: ship
+      identifier: raw_gz_ship
+      columns:
+        - name: orders_id
+          description: primary key de ship
+          tests: 
+            - unique
+            - not_null
+
 
