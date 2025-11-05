@@ -51,5 +51,90 @@ sources:
           tests: 
             - unique
             - not_null
+    - name: facebook
+      identifier: raw_gz_facebook
+      description: campaign with facebook
+      columns: 
+        - name: date_date
+          description: pk 
+        - name: campaign_name
+          description: name 
+        - name: paid_source
+          description: source of the campaign 
+        - name: campaign_key
+          description: id of the campaign, pk
+        - name: ads_cost
+          description: price of the campaign 
+        - name: impression
+          description: nb of people who saw the campaign 
+        - name: click
+          description: nb of people who clicked on the campaign
+      tests: 
+        - unique:
+            column_name: "(date_date|| '-' || campaign_key)"  
+    - name: criteo
+      identifier: raw_gz_criteo
+      description: campaign with criteo
+      columns:
+        - name: date_date
+          description: pk 
+        - name: campaign_name
+          description: name 
+        - name: paid_source
+          description: source of the campaign 
+        - name: campaign_key
+          description: id of the campaign, pk
+        - name: ads_cost
+          description: price of the campaign 
+        - name: impression
+          description: nb of people who saw the campaign 
+        - name: click
+          description: nb of people who clicked on the campaign
+      tests:
+        - unique:
+            column_name: "(date_date|| '-' || campaign_key)"                
+    - name: bing
+      identifier: raw_gz_bing
+      description: campaign with bing
+      columns:
+        - name: date_date
+          description: pk 
+        - name: campaign_name
+          description: name 
+        - name: paid_source
+          description: source of the campaign 
+        - name: campaign_key
+          description: id of the campaign, pk
+        - name: ads_cost
+          description: price of the campaign 
+        - name: impression
+          description: nb of people who saw the campaign 
+        - name: click
+          description: nb of people who clicked on the campaign
+      tests:
+        - unique:
+            column_name: "(date_date|| '-' || campaign_key)" 
+    - name: adwords
+      identifier: raw_gz_adwords
+      description: campaign with adwords
+      columns:
+        - name: date_date
+          description: pk 
+        - name: campaign_name
+          description: name 
+        - name: paid_source
+          description: source of the campaign 
+        - name: campaign_key
+          description: id of the campaign, pk
+        - name: ads_cost
+          description: price of the campaign
+        - name: impression
+          description: nb of people who saw the campaign 
+        - name: click
+          description: nb of people who clicked on the campaign
+      tests:
+        - unique:
+            column_name: "(date_date|| '-' || campaign_key)" 
+
 
 
