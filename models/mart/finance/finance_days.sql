@@ -9,5 +9,7 @@ date_date
 ,ROUND(SUM(logcost),2) as total_logcost
 ,ROUND(SUM(quantity),2) as total_product
 ,ROUND(AVG(revenue),2) as avgbasket
+,ROUND(SUM(margin),2) as margin
+,ROUND(SUM(ship_cost),2) as ship_cost
 FROM {{ ref('int_orders_operational') }}
 GROUP BY date_date
